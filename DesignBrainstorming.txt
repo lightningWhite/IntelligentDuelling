@@ -1,0 +1,39 @@
+Design Brainstorming
+
+1. Character Selection
+1.5. Weapon Selection
+2. Opponent Selection
+3. Design Characther
+   - What are the attributes?
+      - Name
+      - Weapon - A set max damage infliction? Determines the moves that are possible?
+      - Hitpoints - How much life the character has.
+      - Speed - Increased probability of getting the hit or the block (Can't inflict as much damage per attack - opposite of strength)
+      - Strength - Higher strength equals higher amount of damage that is inflicted (Lower probability of getting a hit - opposite of speed)
+      - Special Power - Some special ability. This must deplete the energy or something
+      - Armor/Defense - Causes the probability of a hit from an opponent to go down. Deffending for a move should increase energy levels.
+      - Energy Level - The higher the energy, the greater the probability for a high attack. Low energy equals missed attacks.
+      - Endurance - The max amount of energy the player can have.
+      - Offesive Moves - The attacks available to the character with the chosen weapon. I'll need the same number of attacks for each character.
+      - Deffensive Moves - The defensive moves available to the character with the chosen armor.
+4. Randomly select first attacker.
+
+Some classes to be written:
+   - Character
+      - Name
+      - Weapon
+         - Offensive Moves
+         - Deffensive Moves
+      - Offensive Moves
+      - Defensive Moves
+      - Hitpoints
+      - Speed
+      - Strength
+      - Armor/Defense
+         - Defensive moves?
+      - EnergyLevel
+      - Endurance
+   - Weapon 
+      - Damage amount
+      - Offensive Moves
+      - Defensive Moves
