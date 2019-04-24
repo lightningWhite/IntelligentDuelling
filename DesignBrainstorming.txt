@@ -1,9 +1,9 @@
 Design Brainstorming
 
-1. Character Selection
-1.5. Weapon Selection
-2. Opponent Selection
-3. Design Characther
+- Character Selection
+- Weapon Selection
+- Opponent Selection
+- Design Characther
    - What are the attributes?
       - Name
       - Weapon - A set max damage infliction? Determines the moves that are possible?
@@ -16,7 +16,37 @@ Design Brainstorming
       - Endurance - The max amount of energy the player can have.
       - Offesive Moves - The attacks available to the character with the chosen weapon. I'll need the same number of attacks for each character.
       - Deffensive Moves - The defensive moves available to the character with the chosen armor.
-4. Randomly select first attacker.
+      - Position - Where the character is located in the battle zone.
+      *************  
+      *           *
+      *     x     *
+      *     0     *
+      *           *
+      *************
+
+      *************
+      * x         *
+      *           *
+      *     0     *
+      *           *
+      *************
+
+      *************
+      * x         *
+      * 0         *
+      *           *
+      *           *
+      *************
+
+- Randomly select first attacker.
+- There needs to be a main game loop once the duel starts.
+      - loop      
+            - Player 1 selects two moves. (Like attack and defend)
+            - Player 1's first move (attack) is applied to Player 2's second move (Nothing for the very first time, defend for the second). 
+            - Player 2 selects two moves. (Like attack and defend)
+            - Player 2's first move (Attack) is applied to Player 1's second move. (Defend)
+            
+
 
 Some classes to be written:
    - Character
