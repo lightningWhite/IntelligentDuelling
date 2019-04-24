@@ -3,7 +3,7 @@ Design Brainstorming
 - Character Selection
 - Weapon Selection
 - Opponent Selection
-- Design Characther
+- Design Character
    - What are the attributes?
       - Name
       - Weapon - A set max damage infliction? Determines the moves that are possible?
