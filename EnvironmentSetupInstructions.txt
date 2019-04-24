@@ -1,0 +1,19 @@
+Setting Up My Programming Environment
+
+1.	Install Visual Studio Code
+2.	Install Python 3.7.3
+   a.	https://www.python.org/downloads/
+3.	Add Python to your PATH
+   a.	Open and Edit your system environment variables.
+   b.	Windows key Envir… 
+   c.	Click on “Environment Variables”
+   d.	In the top section, click on Path
+   e.	Select Edit.
+   f.	Click New.
+   g.	Click Browse.
+   h.	Browse to where Python was installed. This path for me was: C:\Users\MyName\AppData\Local\Programs\Python\Python37-32
+   i.	Also add this one for the PyLinting to work in VS Code: C:\Users\Daniel\AppData\Local\Programs\Python\Python37-32\Scripts
+4.	Open VS Code
+   a.	Click on Extensions
+   b.	Search for and install Python for published by Microsoft.
+   c.	Refer to https://code.visualstudio.com/docs/python/python-tutorial for getting started.
