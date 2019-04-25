@@ -16,7 +16,7 @@ Design Brainstorming
       - Endurance - The max amount of energy the player can have.
       - Offesive Moves - The attacks available to the character with the chosen weapon. I'll need the same number of attacks for each character.
       - Deffensive Moves - The defensive moves available to the character with the chosen armor.
-      - Position - Where the character is located in the battle zone.
+      - Position - Where the character is located in the battle zone. (*Maybe don't do position...)
       *************  
       *           *
       *     x     *
@@ -46,6 +46,27 @@ Design Brainstorming
             - Player 2 selects two moves. (Like attack and defend)
             - Player 2's first move (Attack) is applied to Player 1's second move. (Defend)
             
+
+- I think the character needs to handle the output of its attack  
+   - If player 1 selects swipe right, then the calculate attack method of the player needs to be invoked.
+      - This method should first look at the weapon's damage amount
+      - Then look at the player's strength level and increase/decrease the weapon's damage amount based off of that
+      - Take the resulting largest possible damage amount
+         - Calculate the percent of the total energy that's available (say it's down to 30% of max)
+         - Set the bell curve center at 15%. This will make it so most likely the attack will fall in that range.
+            -  Basically, I want a lower energy level to result in a weaker attack amount 
+         - Apply the speed level as a probability of getting a hit (higher speed is more likely to get a hit. Note that speed is incorporated in the attack amount through the strenght. They are inversely proportional.)
+
+- The move you chose affects the speed (probability of the next move). Swinging left twice makes it less likely you'll get a hit, because it's slower to move the weapon back. This will take affect by halving the speed or something.
+- Use a table. If it's a block, no damage is applied. Both characters calulate their attack amount and if it's a hit, the damage is applied to the other character.
+- Both players could get damaged.
+- To lookup the result of the attack (hit or block) take the first attacker's move, return the list of moves that block it, then check if the defender's move is one of those. If so, the attack was blocked. Otherwise, it was a hit.
+   - Make a map or something that maps attacks to lists of blocking moves.
+
+- If you do a defensive move, you increase in energy. Attacking moves decrease energy.
+
+- Display window:
+   - informs player of past result. This needs to include the other player's move applied. Maybe have an option of displaying all the moves in the duel of the other player so far as well as your moves.
 
 
 Some classes to be written:
