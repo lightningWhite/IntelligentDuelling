@@ -1,16 +1,45 @@
 
+class Sword:
+   """A class representing the sword"""
+   def __init__(self):
+      self.type = "Sword"
+      self.damage = 3 # How much damage it can inflict
+      self.moves = ["Swing Right", "Swing Left", "Swing Up", "Swing Down", "Jab"]
+
+class WoodenShield:
+   """A class representing a wooden shield. This is a weak shield."""
+   def __init__(self):
+      self.type = "Wooden Shield"
+      self.maxIntegrity = 25 # How much damage it can withstand before breaking
+      self.currentIntegrity = 25
+      self.moves = ["Block Right", "Block Left", "Block Up", "Block Down", "Block Forward"]
 
 class Character:
-   """A class representing a character"""
+   """A class representing the attributes of a character"""
    def __init__(self, name, playerNum):
       self.name = name
       self.playerNum = playerNum
-      self.hitpoints = 10
+
+      self.hitpoints = 20   # The remaining life
+      self.endurance = 5    # The max energy
+      self.energy = 5       # energy/endurance * max attack = highest probably attack amount
+
+      self.weapon = Sword() # This has the damage amount and the moves.
+      self.shield = WoodenShield() # Different shields can withstand more damage.
+      self.strength = 5     # Affects max attack
+      self.speed = 5        # Affects the probability of a block or a hit
+      self.armor = 5        # Dampens the effect of an opponent's attack
+
+      self.specialAbility = "" # An ability specific to this character      
+      self.lastMove = ""    # The move most recently executed. The same move executed twice will decrease the damage or speed
 
    def displayCharacterStats():
       print("Player " + playerNum + ": " + name)
       print("\tHitpoings: " + hitpoints)
-      
+      print("\tEnergy: " + hitpoints + " of " + endurance)
+      print("\tWeapon: " + weapon.type())
+      print("\tShield Integrity: " + shield.maxIntegrity + " of " + shield.currentIntegrity)
+ 
 
 def getContestants():
    # Get player 1's name
@@ -49,6 +78,9 @@ def main():
 
    player1, player2 = getContestants()
 
+   player1.displayCharacterStats()
+   player2.displayCharacterStats()
+
    playing = True
 
    firstMoveP1 = 0
@@ -57,9 +89,9 @@ def main():
    firstMoveP2 = 0
    secondMoveP2 = 0
 
-   while playing:
+   #while playing:
       # Player 1 selects two moves.
-      firstMoveP1, secondMoveP2 = getMoves(player1)
+    #  firstMoveP1, secondMoveP2 = getMoves(player1)
 
       # Player 1's first move (attack) is applied to Player 2's second move (Nothing for the very first time, defend for the second).
       

@@ -16,6 +16,7 @@ Design Brainstorming
       - Endurance - The max amount of energy the player can have.
       - Offesive Moves - The attacks available to the character with the chosen weapon. I'll need the same number of attacks for each character.
       - Deffensive Moves - The defensive moves available to the character with the chosen armor.
+      - Shield - Determines the defenseive moves. Has an integrity level. Each hit decreases it. Each turn without a hit increases its level.
       - Position - Where the character is located in the battle zone. (*Maybe don't do position...)
       *************  
       *           *
@@ -56,6 +57,22 @@ Design Brainstorming
          - Set the bell curve center at 15%. This will make it so most likely the attack will fall in that range.
             -  Basically, I want a lower energy level to result in a weaker attack amount 
          - Apply the speed level as a probability of getting a hit (higher speed is more likely to get a hit. Note that speed is incorporated in the attack amount through the strenght. They are inversely proportional.)
+
+- I may want to have the other attacked modify the created attack based off it its speed and armor.
+
+- Process of a combat interaction
+   - Attacker uses its characteristics to create an attack amount 
+      - Take weapon damage amount
+      - Increase/decrease weapon damage amount based off of strength/speed
+         - This represents the max attack amount
+      - Use the current energy level percent to determine the mean value of the max attack of a numpy random gauss and use some standard deviation (perhaps the speed affects the standard deviation used?)
+         - The value returned is the attack amount to be dealt
+      - Using the move, query to obtain a list of moves that could block it
+   - The blocking moves are compared with the defender's move.
+      - If the defender's move is a blocking move, no damage is applied
+      - If the defender's move is not a blocking move, apply the attack
+         - Using the defender's armor amount, decrease the attack amount applied. 
+      
 
 - The move you chose affects the speed (probability of the next move). Swinging left twice makes it less likely you'll get a hit, because it's slower to move the weapon back. This will take affect by halving the speed or something.
 - Use a table. If it's a block, no damage is applied. Both characters calulate their attack amount and if it's a hit, the damage is applied to the other character.
