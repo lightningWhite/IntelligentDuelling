@@ -1,10 +1,23 @@
+# Intelligent Duelling
+
+from random import seed
+from random import gauss
+
+# Map the Attack to all moves that block it
+attackBlocksDict = {
+   "Swing Right": ["Shield Right", "Swing Right"],
+   "Swing Left": ["Shield Left", "Swing Left"],
+   "Swing Down": ["Shield Up", "Swing Up"],
+   "Swing Up": ["Shield Down", "Swing Down"]
+   "Jab": ["Shield Forward", "Swing Right", "Swing Down"] 
+}
 
 class Sword:
    """A class representing the sword"""
    def __init__(self):
       self.type = "Sword"
       self.damage = 3 # How much damage it can inflict
-      self.moves = ["Swing Right", "Swing Left", "Swing Up", "Swing Down", "Jab"]
+      self.moves = ["Swing Right", "Swing Left", "Swing Up", "Swing Down", "Jab", "Nothing"]
 
 class WoodenShield:
    """A class representing a wooden shield. This is a weak shield."""
@@ -12,7 +25,7 @@ class WoodenShield:
       self.type = "Wooden Shield"
       self.maxIntegrity = 25 # How much damage it can withstand before breaking
       self.currentIntegrity = 25
-      self.moves = ["Block Right", "Block Left", "Block Up", "Block Down", "Block Forward"]
+      self.moves = ["Block Right", "Block Left", "Block Up", "Block Down", "Block Forward", "Nothing"]
 
 class Character:
    """A class representing the attributes of a character"""
@@ -33,13 +46,57 @@ class Character:
       self.specialAbility = "" # An ability specific to this character      
       self.lastMove = ""    # The move most recently executed. The same move executed twice will decrease the damage or speed
 
-   def displayCharacterStats():
-      print("Player " + playerNum + ": " + name)
-      print("\tHitpoings: " + hitpoints)
-      print("\tEnergy: " + hitpoints + " of " + endurance)
-      print("\tWeapon: " + weapon.type())
-      print("\tShield Integrity: " + shield.maxIntegrity + " of " + shield.currentIntegrity)
- 
+   def displayCharacterStats(self):
+      print("Player {}: {}".format(self.playerNum, self.name))
+      print("\tHitpoings: {}".format(self.hitpoints))
+      print("\tEnergy: {}/{}".format(self.energy, self.endurance))
+      print("\tWeapon: {}".format(self.weapon.type))
+      print("\tShield: {}".format(self.shield.type))   
+      print("\tShield Integrity: {}/{}".format(self.shield.maxIntegrity, self.shield.currentIntegrity))
+
+   # Maybe this doesn't belong to a character. Does it belong to the game?
+   def calculateAttack(self, move):
+      # Where should I handle a defensive move? In here?
+      # Maybe I could differentiate between an offensive move and a defensive
+      # If it's defensive, return 0 attack and empty list?
+
+      global attackBlocksDict
+
+      # Obtain a list of moves that can block the chosen move
+      blockingMoves = attackBlocksDict[move]
+
+      # Higher strength = larger attack. Higher speed = weaker attack.
+      maxAttack = (self.strength / self.speed) * self.weapon.damage
+
+      # This is the attack value with the highest probability
+      meanAttack = (self.energy / self.endurance) * maxAttack
+
+      # Select the attack amount with a gaussian distribution of probabilities
+      # The meanAttack has the highest probability of being selected
+      standardDeviation = 1.5
+      attack = gauss(meanAttack, 1.5)
+
+      if attack > maxAttack:
+         attack = maxAttack
+      elif attack < 0:
+         attack = 0
+
+      # Returning to the same position takes time. This would decrease the effectiveness of the blow
+      # Decrease the attack amount if the current move is the same as the last move
+      if move == self.lastMove:
+         attack = attack / 2
+
+      return attack, blockingMoves
+      
+
+def performInteraction():
+   # Take the moves of each player
+   # Calculate the attack of them
+   # Compare the speeds. Grant higher probability of hit to player with greater speed.
+   # Decrease attack dealt with respect to the attackee's armor
+   # Lower the hitpoints of the attacked
+   # Decrease/increase the integrity of the shield used for blocking
+   # Decrease/increase the energy
 
 def getContestants():
    # Get player 1's name
@@ -99,11 +156,6 @@ def main():
       # Player 2 selects two moves. (Like attack and defend)
       
       # Player 2's first move (Attack) is applied to Player 1's second move. (Defend)
-
-
-
-   
-
 
 
 if __name__ == "__main__":
